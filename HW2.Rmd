@@ -1,0 +1,64 @@
+---
+title: "HW 2"
+author: "William Cohen"
+date: "2/19/2021"
+output: word_document
+---
+
+
+```{r}
+library(tidyverse)
+
+#1.
+USArrests
+#Arrest data on various crimes per 100,000 residents in each US state in 1973. The data shows rate of murder, assault, and rape, as well as the percent of a state's population that lives in an urban area.
+#help("USArrests")
+
+#2.
+map(USArrests, max)
+map(USArrests, which.max)
+
+USArrests[33,] #North Carolina has the greatest rate of assaults.
+
+#3.
+#install.packages("nycflights13")
+library(nycflights13)
+flights
+
+#4.
+nrow(flights) #336776 rows
+ncol(flights) #19 columns
+
+is_tibble(flights)
+#A tibble is like a data frame, however they don't have the same wide range of usage, however they are easier to use with large data sets as, among other things, the print method is greatly enhanced.
+
+#5.
+map(flights, typeof)
+
+#6.
+levels(iris$Species)
+names(iris)
+
+models <- iris %>%
+  split(.$Species) %>%
+  map(~lm(Sepal.Length ~ Sepal.Width, data = .))
+models
+summary(models)
+
+#7.
+V <- list(12, 22, 27, 31.5, NA, 39, "east")
+V
+
+#a.
+length(V)
+#b.
+V[is.na(V)]
+#c.
+V[3]
+#d.
+V[c(7,1)]
+#e.
+is.character(unlist(V[7]))
+
+```
+
